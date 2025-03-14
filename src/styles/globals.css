@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #0ea5e9;
+  --secondary: #14b8a6;
+  --gradient-1: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --gradient-2: linear-gradient(45deg, #0ea5e9 0%, #14b8a6 100%);
+  --gradient-3: linear-gradient(to right, #1e293b 0%, #0f172a 100%);
+}
+
+body {
+  @apply bg-slate-900 text-white;
+  background: var(--gradient-1);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-b from-teal-400 to-blue-500 rounded-full;
+}
