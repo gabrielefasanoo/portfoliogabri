@@ -3,11 +3,22 @@
 @tailwind utilities;
 
 :root {
-  --primary: #0ea5e9;
-  --secondary: #14b8a6;
-  --gradient-1: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-  --gradient-2: linear-gradient(45deg, #0ea5e9 0%, #14b8a6 100%);
-  --gradient-3: linear-gradient(to right, #1e293b 0%, #0f172a 100%);
+  --primary: #FF6B6B;
+  --secondary: #4ECDC4;
+  --accent: #FFE66D;
+  --dark: #2C3E50;
+  --darker: #1A252F;
+  
+  --gradient-1: linear-gradient(135deg, #2C3E50 0%, #3498DB 100%);
+  --gradient-2: linear-gradient(45deg, #FF6B6B 0%, #4ECDC4 100%);
+  --gradient-3: linear-gradient(to right, #2C3E50 0%, #1A252F 100%);
+  --gradient-cta: linear-gradient(45deg, #FF6B6B 0%, #FF8E53 100%);
+  --accent-glow: 0 0 20px rgba(255, 107, 107, 0.5);
+  --gradient-hero: linear-gradient(135deg, #1A1F35 0%, #2C3E50 100%);
+  --gradient-hero-accent: linear-gradient(45deg, rgba(255, 107, 107, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
+  --bg-solid: #1A1F35;
+  --bg-solid-light: #202942;
+  --gradient-section: linear-gradient(45deg, rgba(26, 31, 53, 0.95) 0%, rgba(44, 62, 80, 0.95) 100%);
 }
 
 body {
@@ -26,4 +37,26 @@ body {
 
 ::-webkit-scrollbar-thumb {
   @apply bg-gradient-to-b from-teal-400 to-blue-500 rounded-full;
+}
+
+@layer components {
+  .cta-button {
+    @apply bg-gradient-cta text-white px-8 py-3 rounded-full font-semibold 
+    shadow-lg hover:shadow-primary transition-all duration-300 hover:scale-105 
+    transform-gpu;
+  }
+  
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-secondary
+    bg-clip-text text-transparent mb-6;
+  }
+
+  .card-hover {
+    @apply hover:shadow-primary-lg transition-all duration-300
+    hover:-translate-y-1 backdrop-blur-sm;
+  }
+
+  .gradient-border {
+    @apply border border-primary/20 hover:border-primary/30 transition-colors duration-300;
+  }
 }

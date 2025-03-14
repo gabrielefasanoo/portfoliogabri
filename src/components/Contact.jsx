@@ -59,15 +59,19 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gradient-section">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-20 bg-gradient-section relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-teal-500/5 to-transparent pointer-events-none" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-white mb-4">Contattami</h2>
+          <span className="inline-block px-4 py-1 bg-teal-500/10 rounded-full text-teal-400 text-sm mb-4">
+            Parliamo del tuo progetto
+          </span>
+          <h2 className="section-title">Iniziamo a collaborare</h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             Hai un progetto interessante? Parliamone insieme. Sono sempre alla ricerca
             di nuove sfide e opportunità di collaborazione.
@@ -85,7 +89,9 @@ const Contact = () => {
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className="group p-6 bg-gradient-main backdrop-blur-sm bg-opacity-50 rounded-xl hover:bg-opacity-70 transition-all duration-300 border border-slate-700/30"
+              className="group p-6 bg-slate-800/50 backdrop-blur-sm rounded-xl 
+              hover:bg-slate-700/50 transition-all duration-300 border border-slate-700/30
+              hover:shadow-lg hover:shadow-teal-500/10 transform hover:-translate-y-1"
             >
               <div className="text-teal-400 text-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
                 {info.icon}
@@ -102,7 +108,8 @@ const Contact = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="max-w-2xl mx-auto space-y-6"
+          className="max-w-2xl mx-auto space-y-6 bg-slate-800/30 p-8 rounded-xl backdrop-blur-sm
+          border border-slate-700/30 hover:shadow-lg hover:shadow-teal-500/10 transition-all duration-300"
         >
           <div>
             <input
@@ -141,10 +148,18 @@ const Contact = () => {
             type="submit"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="w-full py-4 bg-gradient-to-r from-teal-500 to-blue-500 text-white rounded-lg font-semibold hover:opacity-90 transition-opacity"
+            className="cta-button w-full"
             disabled={loading}
           >
-            {loading ? 'Invio in corso...' : 'Invia messaggio'}
+            {loading ? (
+              <span className="flex items-center justify-center">
+                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Invio in corso...
+              </span>
+            ) : 'Invia messaggio'}
           </motion.button>
           {success && (
             <p className="text-green-400 text-center">

@@ -49,7 +49,6 @@ const Navbar = () => {
     { id: 'about', label: 'About', icon: <FaUser className="mr-2" /> },
     { id: 'skills', label: 'Skills', icon: <FaCode className="mr-2" /> },
     { id: 'portfolio', label: 'Portfolio', icon: <FaFolder className="mr-2" /> },
-    { id: 'contact', label: 'Contatti', icon: <FaEnvelope className="mr-2" /> },
   ]
 
   return (
