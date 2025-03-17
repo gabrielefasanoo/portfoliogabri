@@ -2,9 +2,11 @@ import React, { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import gsap from 'gsap'
-import { TextPlugin } from 'gsap/TextPlugin'
+import { TextPlugin } from 'gsap/dist/TextPlugin'
 
-gsap.registerPlugin(TextPlugin)
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(TextPlugin)
+}
 
 const Hero = () => {
   const textRef = useRef(null)
@@ -15,6 +17,8 @@ const Hero = () => {
   ]
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
+
     const tl = gsap.timeline({
       repeat: -1,
       repeatDelay: 0.5,
@@ -25,33 +29,23 @@ const Hero = () => {
         duration: 0,
         text: '',
       })
-      // Animazione di scrittura carattere per carattere
       .to(textRef.current, {
         duration: 1.5,
-        text: {
-          value: phrase,
-          delimiter: '',
-        },
+        text: phrase,
         ease: 'none',
         onUpdate: function() {
-          // Spostiamo il cursore alla fine del testo corrente
           if (cursorRef.current) {
             const textWidth = textRef.current.getBoundingClientRect().width
             cursorRef.current.style.transform = `translateX(${textWidth}px)`
           }
         }
       })
-      .to({}, { duration: 1.5 }) // Pausa
-      // Animazione di cancellazione carattere per carattere
+      .to({}, { duration: 1.5 })
       .to(textRef.current, {
         duration: 0.8,
-        text: {
-          value: '',
-          delimiter: '',
-        },
+        text: '',
         ease: 'none',
         onUpdate: function() {
-          // Aggiorniamo la posizione del cursore durante la cancellazione
           if (cursorRef.current) {
             const textWidth = textRef.current.getBoundingClientRect().width
             cursorRef.current.style.transform = `translateX(${textWidth}px)`
@@ -60,7 +54,6 @@ const Hero = () => {
       })
     })
 
-    // Animazione del lampeggio del cursore
     gsap.to(cursorRef.current, {
       opacity: 0,
       repeat: -1,
